@@ -6,8 +6,8 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true
   },
-  basePath: process.env.NODE_ENV === 'production' ? '/ai-ui-test-modern' : '',
-  assetPrefix: process.env.NODE_ENV === 'production' ? '/ai-ui-test-modern/' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/ai-writing-about-ai-magazine' : '',
+  assetPrefix: process.env.NODE_ENV === 'production' ? '/ai-writing-about-ai-magazine/' : '',
 };
 
 export default nextConfig;

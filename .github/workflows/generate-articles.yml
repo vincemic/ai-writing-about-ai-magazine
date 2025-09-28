@@ -56,7 +56,7 @@ jobs:
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
         TEST_MODE: ${{ github.event.inputs.test_mode || false }}
-        SITE_URL: https://your-username.github.io/ai-ui-test-modern
+        SITE_URL: https://vincemic.github.io/ai-writing-about-ai-magazine
       run: |
         echo "🤖 Starting article generation..."
         node scripts/generate-daily-articles.js
@@ -74,14 +74,14 @@ jobs:
         
     - name: Update navigation and metadata
       env:
-        SITE_URL: https://your-username.github.io/ai-ui-test-modern
+        SITE_URL: https://vincemic.github.io/ai-writing-about-ai-magazine
       run: |
         echo "🧭 Updating navigation and content metadata..."
         node scripts/update-navigation.js
         
     - name: Generate sitemap
       env:
-        SITE_URL: https://your-username.github.io/ai-ui-test-modern
+        SITE_URL: https://vincemic.github.io/ai-writing-about-ai-magazine
       run: |
         echo "🗺️ Generating sitemap..."
         node scripts/generate-sitemap.js
@@ -144,7 +144,7 @@ jobs:
     - name: Build static site
       env:
         NODE_ENV: production
-        SITE_URL: https://your-username.github.io/ai-ui-test-modern
+        SITE_URL: https://vincemic.github.io/ai-writing-about-ai-magazine
       run: |
         echo "🏗️ Building static Next.js site..."
         npm run build
