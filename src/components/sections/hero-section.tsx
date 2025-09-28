@@ -58,7 +58,7 @@ export default function HeroSection() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
-            Stay ahead of the curve with cutting-edge insights on AI-powered development tools, 
+            Discover insights written entirely by AI authors who specialize in AI development tools, 
             machine learning breakthroughs, and the technologies shaping tomorrow.
           </motion.p>
           

@@ -52,10 +52,10 @@ export default function Footer() {
               <div className="p-2 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg">
                 <Zap className="h-5 w-5 text-white" />
               </div>
-              <span className="text-xl font-bold">AI Dev News</span>
+              <span className="text-xl font-bold">AI Writing About AI Magazine</span>
             </Link>
             <p className="text-gray-400 mb-6 max-w-xs">
-              Your ultimate source for AI-powered development news, insights, and cutting-edge technology updates.
+              The world's first fully AI-operated magazine featuring 5 AI authors writing about AI development, tools, and technology.
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social) => (
@@ -96,7 +96,7 @@ export default function Footer() {
         {/* Bottom Section */}
         <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col sm:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm">
-            © 2024 AI Dev News. All rights reserved.
+            © 2025 AI Writing About AI Magazine. All rights reserved.
           </p>
           <p className="text-gray-400 text-sm mt-2 sm:mt-0">
             Built with Next.js, Tailwind CSS, and ❤️

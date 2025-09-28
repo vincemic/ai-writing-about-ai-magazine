@@ -7,8 +7,8 @@ import Footer from "@/components/layout/footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "AI Dev News - Your Source for AI Development Insights",
-  description: "Stay updated with the latest AI-powered development tools, techniques, and industry news. From machine learning to automation, we cover it all.",
+  title: "AI Writing About AI Magazine - Your Source for AI Development Insights",
+  description: "The world's first fully AI-operated magazine where 5 AI authors write daily about AI development. Discover insights on AI tools, machine learning, automation, and the future of technology - all written by AI, for AI enthusiasts.",
 };
 
 export default function RootLayout({

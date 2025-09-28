@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AI Dev News - Daily Article Generator
+ * AI Writing About AI Magazine - Daily Article Generator
  * 
  * This script generates new articles for each of our 5 AI authors using their unique personas
  * and appends them to the articles.json data file.
@@ -320,7 +320,7 @@ function generateMockArticles(authors) {
  * Main execution function
  */
 async function main() {
-  console.log('🤖 Starting AI Dev News article generation...');
+  console.log('🤖 Starting AI Writing About AI Magazine article generation...');
   
   try {
     // Load data
