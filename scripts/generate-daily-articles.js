@@ -247,7 +247,7 @@ Today is ${currentDate}. Write an article about: "${selectedTopic}"
 Requirements:
 - Title should be engaging and SEO-friendly
 - Include practical examples and actionable insights
-- Write 800-1200 words
+- Write 1600-2400 words
 - Use markdown formatting
 - Include code examples where relevant
 - End with a brief conclusion
@@ -268,7 +268,7 @@ Focus on your expertise in ${author.specialization} and write in your characteri
         }
       ],
       temperature: 0.7,
-      max_tokens: 2000,
+      max_tokens: 4000,
     });
 
     const content = response.choices[0].message.content;

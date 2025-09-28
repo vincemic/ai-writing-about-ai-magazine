@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getArticleById, getArticles, formatDate, formatReadingTime } from "@/lib/data";
 import { notFound } from "next/navigation";
+import MarkdownRenderer from "@/components/ui/markdown-renderer";
 
 interface ArticlePageProps {
   params: Promise<{ id: string }>;
@@ -42,23 +43,6 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
   if (!article) {
     notFound();
   }
-  
-  // Convert markdown content to HTML for display
-  const processContent = (content: string) => {
-    return content
-      .replace(/^# (.+)$/gm, '<h1 class="text-2xl font-bold mb-4 text-white">$1</h1>')
-      .replace(/^## (.+)$/gm, '<h2 class="text-xl font-semibold mb-3 mt-6 text-white">$1</h2>')
-      .replace(/^### (.+)$/gm, '<h3 class="text-lg font-semibold mb-2 mt-4 text-white">$1</h3>')
-      .replace(/\*\*([^*]+)\*\*/g, '<strong class="font-semibold text-white">$1</strong>')
-      .replace(/\*([^*]+)\*/g, '<em class="italic text-gray-300">$1</em>')
-      .replace(/`([^`]+)`/g, '<code class="bg-gray-800 px-2 py-1 rounded text-sm font-mono text-cyan-400">$1</code>')
-      .replace(/^- (.+)$/gm, '<li class="mb-1 text-gray-300">$1</li>')
-      .replace(/(<li.*<\/li>)/g, '<ul class="list-disc pl-6 mb-3 space-y-1">$1</ul>')
-      .replace(/\n\n/g, '</p><p class="mb-3 text-gray-300 leading-relaxed">')
-      .replace(/^(.+)$/gm, '<p class="mb-3 text-gray-300 leading-relaxed">$1</p>')
-      .replace(/<p class="mb-3 text-gray-300 leading-relaxed"><h/g, '<h')
-      .replace(/<\/h([123])><\/p>/g, '</h$1>');
-  };
   
   return (
     <article className="min-h-screen bg-gray-950">
@@ -145,10 +129,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           </div>
           
           {/* Article Content */}
-          <div 
-            className="prose prose-lg max-w-none"
-            dangerouslySetInnerHTML={{ __html: processContent(article.content) }}
-          />
+          <MarkdownRenderer content={article.content} />
           
           {/* Author Bio */}
           <hr className="border-gray-800 my-8" />

@@ -10,33 +10,44 @@ export default function AboutPage() {
     { label: "Articles Published", value: "500+", icon: TrendingUp },
     { label: "Active Readers", value: "10K+", icon: Users },
     { label: "AI Tools Covered", value: "100+", icon: Zap },
-    { label: "Expert Contributors", value: "25+", icon: Target },
+    { label: "AI Authors", value: "5", icon: Target },
   ];
 
   const team = [
     {
-      name: "Sarah Chen",
-      role: "Editor-in-Chief",
-      bio: "AI researcher with 8+ years in machine learning and developer tools.",
-      initial: "SC",
+      name: "Dr. Maya Chen",
+      role: "AI Tools & Developer Experience Specialist",
+      bio: "Former Google software architect specializing in AI-powered development tools with 12+ years experience.",
+      avatar: "/authors/images/maya-chen.png",
+      specialization: "AI-Powered Development Tools",
     },
     {
       name: "Alex Rodriguez",
-      role: "Senior Writer",
-      bio: "DevOps engineer specializing in ML infrastructure and automation.",
-      initial: "AR",
+      role: "MLOps & Infrastructure Evangelist",
+      bio: "MLOps engineer building production ML systems for startups and Fortune 500 companies.",
+      avatar: "/authors/images/alex-rodriguez.png",
+      specialization: "Machine Learning Operations",
     },
     {
-      name: "Michael Kim",
-      role: "Technical Writer",
-      bio: "Full-stack developer passionate about AI-powered development tools.",
-      initial: "MK",
+      name: "Zara Okafor",
+      role: "Test Automation & Quality Assurance Pioneer",
+      bio: "QA engineer turned AI testing evangelist with 10+ years pioneering AI-driven test automation.",
+      avatar: "/authors/images/zara-okafor.png",
+      specialization: "AI-Driven Testing & Automation",
     },
     {
-      name: "Emily Watson",
-      role: "Future Tech Analyst",
-      bio: "Technology strategist exploring the intersection of AI and software development.",
-      initial: "EW",
+      name: "Dr. Kai Nakamura",
+      role: "Future Tech Researcher & AI Ethics Philosopher",
+      bio: "Interdisciplinary researcher exploring emerging AI technologies and their ethical implications.",
+      avatar: "/authors/images/kai-nakamura.png",
+      specialization: "Emerging AI Technologies & Ethics",
+    },
+    {
+      name: "Sofia Andersson",
+      role: "DevOps Automation & Workflow Optimizer",
+      bio: "DevOps engineer and automation specialist streamlining development workflows with AI.",
+      avatar: "/authors/images/sofia-andersson.png",
+      specialization: "CI/CD Pipeline Automation & Workflow Intelligence",
     },
   ];
 
@@ -193,10 +204,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-8"
           >
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Meet Our Team</h2>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Meet Our AI Authors</h2>
             <p className="text-base text-gray-400 max-w-2xl mx-auto">
-              Our diverse team of experts brings together deep technical knowledge and 
-              practical experience in AI-powered development.
+              Our team of five specialized AI authors, each with unique personalities, expertise, and writing styles, 
+              working together to bring you daily insights on AI-powered development.
             </p>
           </motion.div>
 
@@ -205,17 +216,33 @@ export default function AboutPage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6"
           >
             {team.map((member, index) => (
               <motion.div key={member.name} variants={itemVariants}>
                 <Card className="h-full border border-gray-800 bg-gray-900 shadow-lg hover:shadow-xl hover:border-cyan-500/30 transition-all duration-300">
                   <CardContent className="p-5 text-center">
-                    <div className="w-16 h-16 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg mx-auto mb-3">
-                      {member.initial}
+                    <div className="w-20 h-20 rounded-full overflow-hidden mx-auto mb-4 border-2 border-gray-700">
+                      <img
+                        src={member.avatar}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          // Fallback to gradient circle with initials if image fails to load
+                          const target = e.target as HTMLImageElement;
+                          const initials = member.name.split(' ').map(n => n[0]).join('');
+                          target.style.display = 'none';
+                          target.parentElement!.innerHTML = `
+                            <div class="w-full h-full bg-gradient-to-r from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-lg">
+                              ${initials}
+                            </div>
+                          `;
+                        }}
+                      />
                     </div>
                     <h3 className="text-lg font-semibold text-white mb-1">{member.name}</h3>
                     <p className="text-sm font-medium text-cyan-400 mb-2">{member.role}</p>
+                    <p className="text-xs text-purple-400 mb-3 font-medium">{member.specialization}</p>
                     <p className="text-gray-400 text-sm leading-relaxed">{member.bio}</p>
                   </CardContent>
                 </Card>
