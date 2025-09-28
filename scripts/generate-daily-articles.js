@@ -153,8 +153,17 @@ The image should be:
 - Suitable as a blog article banner
 - Clean and minimalist design
 - High contrast and readable
+- Abstract or symbolic representation of the topic
+- Focus on visual elements like geometric shapes, gradients, circuits, or tech patterns
 
-Describe the image in 1-2 sentences, focusing on visual elements, colors, and composition. Avoid text or specific logos.`;
+IMPORTANT: The image must be completely text-free. Do NOT include any:
+- Letters, words, or text of any kind
+- Numbers or symbols
+- Code snippets or programming text
+- Brand names or logos
+- Readable characters or typography
+
+Describe the image in 1-2 sentences, focusing purely on visual elements, colors, shapes, and composition without any textual elements.`;
 
   try {
     const response = await openai.chat.completions.create({
@@ -177,7 +186,7 @@ Describe the image in 1-2 sentences, focusing on visual elements, colors, and co
   } catch (error) {
     console.error('Error generating image description:', error);
     // Fallback description
-    return `A modern, minimalist banner featuring abstract geometric shapes in blue and purple gradients, representing ${author.specialization.toLowerCase()} and artificial intelligence concepts.`;
+    return `A modern, minimalist banner featuring abstract geometric shapes in blue and purple gradients, representing ${author.specialization.toLowerCase()} and artificial intelligence concepts. No text, letters, or words.`;
   }
 }
 
@@ -186,9 +195,12 @@ Describe the image in 1-2 sentences, focusing on visual elements, colors, and co
  */
 async function generateBannerImage(imageDescription, articleId) {
   try {
+    // Enhance the prompt to explicitly forbid text
+    const enhancedPrompt = `${imageDescription}. Important: Create this image with absolutely NO TEXT, NO LETTERS, NO WORDS, NO NUMBERS, NO SYMBOLS, NO CODE, and NO READABLE CHARACTERS of any kind. Pure visual elements only.`;
+    
     const response = await openai.images.generate({
       model: "dall-e-2",
-      prompt: imageDescription,
+      prompt: enhancedPrompt,
       size: "1024x1024",
       n: 1,
     });
