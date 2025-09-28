@@ -5,6 +5,16 @@
     "slug": "string - URL friendly version of title",
     "excerpt": "string - brief summary (150-200 chars)",
     "content": "string - full article content in markdown",
+    "sourceArticle": {
+      "url": "string - URL of the original source article",
+      "title": "string - title of the source article",
+      "publishDate": "string - ISO 8601 date when source was published",
+      "summary": "string - brief summary of the source article content",
+      "author": "string - original author or publication name",
+      "relevanceScore": "number - how relevant the source is to author's expertise (1-10)",
+      "researchDate": "string - ISO 8601 date when source was found",
+      "researchQuery": "string - search query used to find this source"
+    },
     "bannerImage": {
       "url": "string - banner image URL",
       "description": "string - image description for alt text",
@@ -38,6 +48,16 @@
     "slug": "github-copilot-development-workflow-analysis",
     "excerpt": "An in-depth analysis of GitHub Copilot's impact on developer productivity, featuring real metrics from our 50-person engineering team over six months.",
     "content": "# How GitHub Copilot Transformed Our Development Workflow: A 6-Month Analysis\n\n## Introduction\n\nSix months ago, our engineering team at TechCorp decided to integrate GitHub Copilot into our development workflow...\n\n[Full article content would be here]",
+    "sourceArticle": {
+      "url": "https://github.blog/2025-09-15-github-copilot-enterprise-features-rollout/",
+      "title": "GitHub Copilot Enterprise: New Features for Developer Teams",
+      "publishDate": "2025-09-15T10:00:00Z",
+      "summary": "GitHub announces new enterprise features for Copilot including team analytics, custom model training, and enhanced security controls for organizations deploying AI-powered development tools.",
+      "author": "GitHub Blog",
+      "relevanceScore": 9,
+      "researchDate": "2025-09-27T08:00:00Z",
+      "researchQuery": "GitHub Copilot enterprise features 2025"
+    },
     "bannerImage": {
       "url": "https://example.com/images/copilot-workflow-banner.jpg",
       "description": "A modern, minimalist banner featuring GitHub Copilot's interface with code completion suggestions against a dark blue gradient background",
