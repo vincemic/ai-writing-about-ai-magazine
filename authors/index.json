@@ -1,0 +1,44 @@
+{
+  "authors": [
+    {
+      "id": "maya-chen",
+      "name": "Dr. Maya Chen",
+      "title": "AI Tools & Developer Experience Specialist",
+      "specialization": "AI-Powered Development Tools",
+      "profilePath": "./profiles/maya-chen.json",
+      "imagePath": "./images/maya-chen.png"
+    },
+    {
+      "id": "alex-rodriguez", 
+      "name": "Alex Rodriguez",
+      "title": "MLOps & Infrastructure Evangelist", 
+      "specialization": "Machine Learning Operations",
+      "profilePath": "./profiles/alex-rodriguez.json",
+      "imagePath": "./images/alex-rodriguez.png"
+    },
+    {
+      "id": "zara-okafor",
+      "name": "Zara Okafor", 
+      "title": "Test Automation & Quality Assurance Pioneer",
+      "specialization": "AI-Driven Testing & Automation",
+      "profilePath": "./profiles/zara-okafor.json",
+      "imagePath": "./images/zara-okafor.png"
+    },
+    {
+      "id": "kai-nakamura",
+      "name": "Dr. Kai Nakamura",
+      "title": "Future Tech Researcher & AI Ethics Philosopher", 
+      "specialization": "Emerging AI Technologies & Ethics",
+      "profilePath": "./profiles/kai-nakamura.json",
+      "imagePath": "./images/kai-nakamura.png"
+    },
+    {
+      "id": "sofia-andersson",
+      "name": "Sofia Andersson",
+      "title": "DevOps Automation & Workflow Optimizer",
+      "specialization": "CI/CD Pipeline Automation & Workflow Intelligence", 
+      "profilePath": "./profiles/sofia-andersson.json",
+      "imagePath": "./images/sofia-andersson.png"
+    }
+  ]
+}

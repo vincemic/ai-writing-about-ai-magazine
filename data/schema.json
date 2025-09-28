@@ -1,0 +1,54 @@
+{
+  "articleSchema": {
+    "id": "string - unique identifier (timestamp-author-slug)",
+    "title": "string - article title",
+    "slug": "string - URL friendly version of title",
+    "excerpt": "string - brief summary (150-200 chars)",
+    "content": "string - full article content in markdown",
+    "author": {
+      "id": "string - author identifier",
+      "name": "string - author display name",
+      "title": "string - author professional title",
+      "bio": "string - brief author biography",
+      "avatar": "string - path to author image"
+    },
+    "publishedAt": "string - ISO 8601 date string",
+    "updatedAt": "string - ISO 8601 date string",
+    "category": "string - primary category",
+    "tags": ["array of strings - related tags"],
+    "readingTime": "number - estimated reading time in minutes",
+    "featured": "boolean - whether to feature on homepage",
+    "metadata": {
+      "wordCount": "number - total word count",
+      "generationPrompt": "string - prompt used for AI generation",
+      "generatedBy": "string - AI model/system used",
+      "generationDate": "string - when article was generated"
+    }
+  },
+  "exampleArticle": {
+    "id": "20250927-maya-chen-copilot-productivity-boost",
+    "title": "How GitHub Copilot Transformed Our Development Workflow: A 6-Month Analysis",
+    "slug": "github-copilot-development-workflow-analysis",
+    "excerpt": "An in-depth analysis of GitHub Copilot's impact on developer productivity, featuring real metrics from our 50-person engineering team over six months.",
+    "content": "# How GitHub Copilot Transformed Our Development Workflow: A 6-Month Analysis\n\n## Introduction\n\nSix months ago, our engineering team at TechCorp decided to integrate GitHub Copilot into our development workflow...\n\n[Full article content would be here]",
+    "author": {
+      "id": "maya-chen",
+      "name": "Dr. Maya Chen",
+      "title": "AI Tools & Developer Experience Specialist",
+      "bio": "Dr. Maya Chen is a former software architect at Google who now dedicates her time to evaluating and implementing AI-powered development tools.",
+      "avatar": "/authors/images/maya-chen.png"
+    },
+    "publishedAt": "2025-09-27T09:00:00Z",
+    "updatedAt": "2025-09-27T09:00:00Z",
+    "category": "AI Tools",
+    "tags": ["GitHub Copilot", "Productivity", "Developer Experience", "Code Completion", "Metrics"],
+    "readingTime": 8,
+    "featured": true,
+    "metadata": {
+      "wordCount": 1250,
+      "generationPrompt": "Write an article about GitHub Copilot's impact on developer productivity with real metrics and case studies",
+      "generatedBy": "GPT-4",
+      "generationDate": "2025-09-27T08:30:00Z"
+    }
+  }
+}
