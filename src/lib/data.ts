@@ -15,6 +15,13 @@ export interface Article {
   slug: string;
   excerpt: string;
   content: string;
+  bannerImage?: {
+    url: string;
+    description: string;
+    generatedAt: string;
+    model: string;
+    error?: string;
+  };
   author: Author;
   publishedAt: string;
   updatedAt: string;

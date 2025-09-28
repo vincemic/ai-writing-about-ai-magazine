@@ -5,6 +5,13 @@
     "slug": "string - URL friendly version of title",
     "excerpt": "string - brief summary (150-200 chars)",
     "content": "string - full article content in markdown",
+    "bannerImage": {
+      "url": "string - banner image URL",
+      "description": "string - image description for alt text",
+      "generatedAt": "string - ISO 8601 date when image was generated",
+      "model": "string - AI model used (dall-e-2, dall-e-3, mock, etc.)",
+      "error": "string - optional error message if generation failed"
+    },
     "author": {
       "id": "string - author identifier",
       "name": "string - author display name",
@@ -31,6 +38,12 @@
     "slug": "github-copilot-development-workflow-analysis",
     "excerpt": "An in-depth analysis of GitHub Copilot's impact on developer productivity, featuring real metrics from our 50-person engineering team over six months.",
     "content": "# How GitHub Copilot Transformed Our Development Workflow: A 6-Month Analysis\n\n## Introduction\n\nSix months ago, our engineering team at TechCorp decided to integrate GitHub Copilot into our development workflow...\n\n[Full article content would be here]",
+    "bannerImage": {
+      "url": "https://example.com/images/copilot-workflow-banner.jpg",
+      "description": "A modern, minimalist banner featuring GitHub Copilot's interface with code completion suggestions against a dark blue gradient background",
+      "generatedAt": "2025-09-27T08:25:00Z",
+      "model": "dall-e-2"
+    },
     "author": {
       "id": "maya-chen",
       "name": "Dr. Maya Chen",

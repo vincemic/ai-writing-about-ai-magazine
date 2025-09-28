@@ -139,6 +139,80 @@ async function generateTrendingTopics() {
 }
 
 /**
+ * Generate a banner image description based on article content
+ */
+async function generateImageDescription(title, content, author) {
+  const imagePrompt = `Create a concise image description for a banner image for this AI/tech article:
+
+Title: "${title}"
+Author expertise: ${author.specialization}
+
+The image should be:
+- Professional and modern
+- Related to AI, technology, or software development
+- Suitable as a blog article banner
+- Clean and minimalist design
+- High contrast and readable
+
+Describe the image in 1-2 sentences, focusing on visual elements, colors, and composition. Avoid text or specific logos.`;
+
+  try {
+    const response = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: [
+        {
+          role: "system",
+          content: "You are an expert visual designer who creates compelling banner image descriptions for tech articles."
+        },
+        {
+          role: "user",
+          content: imagePrompt
+        }
+      ],
+      temperature: 0.7,
+      max_tokens: 200,
+    });
+
+    return response.choices[0].message.content.trim();
+  } catch (error) {
+    console.error('Error generating image description:', error);
+    // Fallback description
+    return `A modern, minimalist banner featuring abstract geometric shapes in blue and purple gradients, representing ${author.specialization.toLowerCase()} and artificial intelligence concepts.`;
+  }
+}
+
+/**
+ * Generate banner image using DALL-E 2
+ */
+async function generateBannerImage(imageDescription, articleId) {
+  try {
+    const response = await openai.images.generate({
+      model: "dall-e-2",
+      prompt: imageDescription,
+      size: "1024x1024",
+      n: 1,
+    });
+
+    return {
+      url: response.data[0].url,
+      description: imageDescription,
+      generatedAt: new Date().toISOString(),
+      model: "dall-e-2"
+    };
+  } catch (error) {
+    console.error(`Error generating banner image for ${articleId}:`, error);
+    // Return fallback placeholder image
+    return {
+      url: `https://via.placeholder.com/1024x512/4F46E5/FFFFFF?text=AI+Article+Banner`,
+      description: imageDescription,
+      generatedAt: new Date().toISOString(),
+      model: "placeholder",
+      error: error.message
+    };
+  }
+}
+
+/**
  * Generate article content for a specific author
  */
 async function generateArticleForAuthor(author, availableTopics) {
@@ -221,12 +295,30 @@ Focus on your expertise in ${author.specialization} and write in your characteri
     const timestamp = new Date().toISOString().split('T')[0].replace(/-/g, '');
     const articleId = `${timestamp}-${author.id}-${slug.substring(0, 30)}`;
     
+    // Generate image description and banner image
+    let bannerImage = null;
+    if (process.env.TEST_MODE !== 'true') {
+      console.log(`  🎨 Generating banner image for "${title}"...`);
+      const imageDescription = await generateImageDescription(title, content, author);
+      bannerImage = await generateBannerImage(imageDescription, articleId);
+      console.log(`  ✅ Generated banner image: ${bannerImage.model}`);
+    } else {
+      // Mock image for test mode
+      bannerImage = {
+        url: `https://via.placeholder.com/1024x512/4F46E5/FFFFFF?text=${encodeURIComponent(title.substring(0, 30))}`,
+        description: `Mock banner image for article: ${title}`,
+        generatedAt: new Date().toISOString(),
+        model: "mock"
+      };
+    }
+    
     return {
       id: articleId,
       title,
       slug,
       excerpt,
       content,
+      bannerImage,
       author: {
         id: author.id,
         name: author.name,
@@ -308,6 +400,12 @@ function generateMockArticles(authors) {
       slug,
       excerpt: `A comprehensive analysis of ${topic.toLowerCase()} from the perspective of ${author.name}.`,
       content: `# ${topic}\n\nThis is a mock article generated for testing purposes. In production, this would contain a full AI-generated article about ${topic}.\n\n## Key Points\n\n- Point 1 about the topic\n- Point 2 with technical details\n- Point 3 with practical examples\n\n## Conclusion\n\nThis mock article demonstrates the structure and format that will be used for AI-generated content.`,
+      bannerImage: {
+        url: `https://via.placeholder.com/1024x512/4F46E5/FFFFFF?text=${encodeURIComponent(topic.substring(0, 30))}`,
+        description: `Mock banner image for article: ${topic}`,
+        generatedAt: currentDate,
+        model: "mock"
+      },
       author: {
         id: author.id,
         name: author.name, 

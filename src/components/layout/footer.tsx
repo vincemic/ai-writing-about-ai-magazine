@@ -6,10 +6,10 @@ import { Github, Twitter, Linkedin, Zap, Mail } from "lucide-react";
 
 export default function Footer() {
   const socialLinks = [
-    { href: "#", icon: Twitter, label: "Twitter" },
-    { href: "#", icon: Github, label: "GitHub" },
-    { href: "#", icon: Linkedin, label: "LinkedIn" },
-    { href: "#", icon: Mail, label: "Email" },
+    { href: "https://twitter.com", icon: Twitter, label: "Twitter" },
+    { href: "https://github.com", icon: Github, label: "GitHub" },
+    { href: "https://linkedin.com", icon: Linkedin, label: "LinkedIn" },
+    { href: "mailto:info@aimagazine.com", icon: Mail, label: "Email" },
   ];
 
   const footerSections = [
@@ -34,10 +34,10 @@ export default function Footer() {
     {
       title: "Resources",
       links: [
-        { href: "#", label: "Newsletter" },
-        { href: "#", label: "RSS Feed" },
-        { href: "#", label: "Privacy Policy" },
-        { href: "#", label: "Terms of Service" },
+        { href: "/newsletter", label: "Newsletter" },
+        { href: "/feed.xml", label: "RSS Feed" },
+        { href: "/privacy", label: "Privacy Policy" },
+        { href: "/terms", label: "Terms of Service" },
       ],
     },
   ];
@@ -78,8 +78,8 @@ export default function Footer() {
             <div key={section.title}>
               <h3 className="text-lg font-semibold mb-4">{section.title}</h3>
               <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.href}>
+                {section.links.map((link, index) => (
+                  <li key={`${section.title}-${link.label}-${index}`}>
                     <Link
                       href={link.href}
                       className="text-gray-400 hover:text-white transition-colors duration-200"
