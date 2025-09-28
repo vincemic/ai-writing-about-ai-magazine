@@ -1,4 +1,4 @@
-name: Generate Daily AI Articles
+name: Daily Article Generation & Static Site Deploy
 
 on:
   schedule:
@@ -9,7 +9,12 @@ on:
       test_mode:
         description: 'Run in test mode (uses mock data)'
         required: false
-        default: 'false'
+        default: false
+        type: boolean
+      skip_articles:
+        description: 'Skip article generation and only rebuild site'
+        required: false
+        default: false
         type: boolean
 
 permissions:
@@ -18,18 +23,22 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "article-generation"
+  group: "article-generation-deploy"
   cancel-in-progress: false
 
 jobs:
-  generate-articles:
+  generate-content:
     runs-on: ubuntu-latest
     
+    outputs:
+      articles-updated: ${{ steps.check-changes.outputs.articles-updated }}
+      
     steps:
     - name: Checkout repository
       uses: actions/checkout@v4
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
+        fetch-depth: 0
         
     - name: Setup Node.js
       uses: actions/setup-node@v4
@@ -40,50 +49,165 @@ jobs:
     - name: Install dependencies
       run: |
         npm ci
-        npm install openai@^4.0.0 axios fs-extra
+        npm install openai@^4.0.0 axios fs-extra --save-dev
         
-    - name: Generate articles for each author
+    - name: Generate new articles
+      if: ${{ github.event.inputs.skip_articles != 'true' }}
       env:
         OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-        TEST_MODE: ${{ github.event.inputs.test_mode }}
+        TEST_MODE: ${{ github.event.inputs.test_mode || false }}
+        SITE_URL: https://your-username.github.io/ai-ui-test-modern
       run: |
+        echo "🤖 Starting article generation..."
         node scripts/generate-daily-articles.js
         
-    - name: Commit and push changes
+    - name: Check for article changes
+      id: check-changes
+      run: |
+        if git diff --name-only | grep -q "data/articles.json"; then
+          echo "articles-updated=true" >> $GITHUB_OUTPUT
+          echo "📝 Articles have been updated"
+        else
+          echo "articles-updated=false" >> $GITHUB_OUTPUT
+          echo "📝 No new articles generated"
+        fi
+        
+    - name: Update navigation and metadata
+      env:
+        SITE_URL: https://your-username.github.io/ai-ui-test-modern
+      run: |
+        echo "🧭 Updating navigation and content metadata..."
+        node scripts/update-navigation.js
+        
+    - name: Generate sitemap
+      env:
+        SITE_URL: https://your-username.github.io/ai-ui-test-modern
+      run: |
+        echo "🗺️ Generating sitemap..."
+        node scripts/generate-sitemap.js
+        
+    - name: Commit generated content
       run: |
         git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
+        git config --local user.name "GitHub Action - Content Generator"
         
-        # Add changes
-        git add data/articles.json
+        # Add all generated files
+        git add data/ public/sitemap.xml public/robots.txt public/feed.xml
         
         # Check if there are changes to commit
         if git diff --staged --quiet; then
-          echo "No changes to commit"
+          echo "📝 No content changes to commit"
         else
-          git commit -m "🤖 Daily article generation - $(date '+%Y-%m-%d')"
-          git push
+          # Count new articles if any
+          if [ "${{ steps.check-changes.outputs.articles-updated }}" = "true" ]; then
+            NEW_ARTICLES=$(git diff --staged data/articles.json | grep -c '^+.*"id":' || echo "0")
+            COMMIT_MSG="🤖 Daily content update - $(date '+%Y-%m-%d') - ${NEW_ARTICLES} new articles"
+          else
+            COMMIT_MSG="🔄 Content metadata update - $(date '+%Y-%m-%d')"
+          fi
+          
+          git commit -m "$COMMIT_MSG"
+          echo "📝 Committed changes: $COMMIT_MSG"
         fi
         
+    - name: Push changes
+      run: |
+        git push origin main
+        echo "🚀 Pushed content updates to repository"
+
+  build-and-deploy:
+    needs: generate-content
+    runs-on: ubuntu-latest
+    
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+      
+    steps:
+    - name: Checkout repository (with updated content)
+      uses: actions/checkout@v4
+      with:
+        ref: main # Ensure we get the latest changes
+        
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm ci
+      
     - name: Setup Pages
       uses: actions/configure-pages@v4
       
-    - name: Build with Next.js
+    - name: Build static site
+      env:
+        NODE_ENV: production
+        SITE_URL: https://your-username.github.io/ai-ui-test-modern
       run: |
+        echo "🏗️ Building static Next.js site..."
         npm run build
         
-    - name: Upload artifact
+        # Verify build output
+        if [ -d "./out" ]; then
+          echo "✅ Static build completed successfully"
+          echo "📊 Build statistics:"
+          find ./out -name "*.html" | wc -l | xargs echo "   HTML pages:"
+          find ./out -name "*.js" | wc -l | xargs echo "   JavaScript files:"
+          find ./out -name "*.css" | wc -l | xargs echo "   CSS files:"
+          du -sh ./out | xargs echo "   Total size:"
+        else
+          echo "❌ Build failed - output directory not found"
+          exit 1
+        fi
+        
+    - name: Upload Pages artifact
       uses: actions/upload-pages-artifact@v3
       with:
         path: './out'
         
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: actions/deploy-pages@v4
+      
+    - name: Post-deployment verification
+      run: |
+        echo "✅ Deployment completed!"
+        echo "🌐 Site URL: ${{ steps.deployment.outputs.page_url }}"
+        echo "📊 Deployment summary:"
+        echo "   - Articles updated: ${{ needs.generate-content.outputs.articles-updated }}"
+        echo "   - Build completed: $(date)"
+        echo "   - Pages deployed: ${{ steps.deployment.outputs.page_url }}"
+
+  notify-completion:
+    needs: [generate-content, build-and-deploy]
     runs-on: ubuntu-latest
-    needs: generate-articles
+    if: always()
+    
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+    - name: Generate summary
+      run: |
+        echo "## 🤖 Daily Content Pipeline Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "**Date:** $(date '+%Y-%m-%d %H:%M:%S UTC')" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Content Generation" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ needs.generate-content.result }}" = "success" ]; then
+          echo "✅ **Success** - Articles and content updated" >> $GITHUB_STEP_SUMMARY
+          echo "- Articles updated: ${{ needs.generate-content.outputs.articles-updated }}" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ **Failed** - Content generation failed" >> $GITHUB_STEP_SUMMARY
+        fi
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Site Deployment" >> $GITHUB_STEP_SUMMARY
+        if [ "${{ needs.build-and-deploy.result }}" = "success" ]; then
+          echo "✅ **Success** - Static site built and deployed" >> $GITHUB_STEP_SUMMARY
+        else
+          echo "❌ **Failed** - Site deployment failed" >> $GITHUB_STEP_SUMMARY
+        fi
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Next Steps" >> $GITHUB_STEP_SUMMARY
+        echo "- 🔄 Next scheduled run: Tomorrow at 02:00 UTC" >> $GITHUB_STEP_SUMMARY
+        echo "- 📝 Manual run: Use 'workflow_dispatch' to trigger manually" >> $GITHUB_STEP_SUMMARY
+        echo "- 🧪 Test mode: Set 'test_mode=true' for mock data generation" >> $GITHUB_STEP_SUMMARY

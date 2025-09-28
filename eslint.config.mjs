@@ -20,6 +20,16 @@ const eslintConfig = [
       "next-env.d.ts",
     ],
   },
+  {
+    rules: {
+      // Allow unused variables (warnings only)
+      "@typescript-eslint/no-unused-vars": "warn",
+      // Allow unescaped entities in JSX (common in text content)
+      "react/no-unescaped-entities": "off",
+      // Allow img elements (warnings only) 
+      "@next/next/no-img-element": "warn",
+    },
+  },
 ];
 
 export default eslintConfig;

@@ -1,0 +1,172 @@
+{
+  "mainMenu": [
+    {
+      "name": "Home",
+      "href": "/",
+      "active": true
+    },
+    {
+      "name": "Articles",
+      "href": "/articles/",
+      "active": true
+    },
+    {
+      "name": "Categories",
+      "href": "/categories/",
+      "active": true
+    },
+    {
+      "name": "About",
+      "href": "/about/",
+      "active": true
+    }
+  ],
+  "categories": [
+    {
+      "name": "AI Tools",
+      "count": 3,
+      "slug": "ai-tools",
+      "latestArticle": {
+        "id": "20250928-maya-chen-ai-powered-code-completion-tools-comparison",
+        "title": "AI-powered code completion tools comparison",
+        "publishedAt": "2025-09-28T01:16:27.560Z",
+        "author": {
+          "id": "maya-chen",
+          "name": "Dr. Maya Chen",
+          "title": "AI Tools & Developer Experience Specialist",
+          "bio": "Dr. Maya Chen is a former software architect at Google who now dedicates her time to evaluating and implementing AI-powered development tools. With over 12 years of experience in full-stack development, she has a unique perspective on how AI can enhance developer productivity. Maya holds a PhD in Computer Science from Stanford and is passionate about bridging the gap between cutting-edge AI research and practical development workflows.",
+          "avatar": "/authors/images/maya-chen.png"
+        }
+      },
+      "description": "Discover the latest AI-powered development tools and how they enhance productivity."
+    },
+    {
+      "name": "Machine Learning",
+      "count": 3,
+      "slug": "machine-learning",
+      "latestArticle": {
+        "id": "20250928-alex-rodriguez-mlops-best-practices-for-2025",
+        "title": "MLOps best practices for 2025",
+        "publishedAt": "2025-09-28T01:16:27.562Z",
+        "author": {
+          "id": "alex-rodriguez",
+          "name": "Alex Rodriguez",
+          "title": "MLOps & Infrastructure Evangelist",
+          "bio": "Alex Rodriguez is a seasoned MLOps engineer who has built production ML systems for startups and Fortune 500 companies. With a background in both software engineering and data science, Alex understands the unique challenges of deploying machine learning models at scale. He's particularly passionate about infrastructure as code and has contributed to several open-source MLOps tools. Alex holds certifications in AWS, GCP, and Azure cloud platforms.",
+          "avatar": "/authors/images/alex-rodriguez.png"
+        }
+      },
+      "description": "Deep dive into MLOps, model deployment, and machine learning best practices."
+    },
+    {
+      "name": "Testing",
+      "count": 3,
+      "slug": "testing",
+      "latestArticle": {
+        "id": "20250928-zara-okafor-automated-testing-with-ai-insights",
+        "title": "Automated testing with AI insights",
+        "publishedAt": "2025-09-28T01:16:27.562Z",
+        "author": {
+          "id": "zara-okafor",
+          "name": "Zara Okafor",
+          "title": "Test Automation & Quality Assurance Pioneer",
+          "bio": "Zara Okafor is a quality assurance engineer turned AI testing evangelist with over 10 years of experience in software testing. She has pioneered the use of AI in test automation at several tech companies and is a frequent speaker at testing conferences. Zara holds a Master's degree in Software Engineering and is passionate about using artificial intelligence to improve software quality and reduce testing overhead. She's contributed to multiple open-source testing frameworks and tools.",
+          "avatar": "/authors/images/zara-okafor.png"
+        }
+      },
+      "description": "Explore AI-driven testing strategies and automation techniques."
+    },
+    {
+      "name": "Future Tech",
+      "count": 3,
+      "slug": "future-tech",
+      "latestArticle": {
+        "id": "20250928-kai-nakamura-the-future-of-human-ai-collaboration",
+        "title": "The future of human-AI collaboration",
+        "publishedAt": "2025-09-28T01:16:27.562Z",
+        "author": {
+          "id": "kai-nakamura",
+          "name": "Dr. Kai Nakamura",
+          "title": "Future Tech Researcher & AI Ethics Philosopher",
+          "bio": "Dr. Kai Nakamura is a researcher and philosopher specializing in emerging AI technologies and their ethical implications. With a PhD in Cognitive Science and a background in both computer science and philosophy, Kai brings a unique interdisciplinary perspective to AI development. They have published extensively on AI consciousness, quantum computing applications, and the future of human-machine collaboration. Kai is currently a visiting researcher at several leading AI labs and serves on ethics boards for major tech companies.",
+          "avatar": "/authors/images/kai-nakamura.png"
+        }
+      },
+      "description": "Insights into emerging AI technologies and their ethical implications."
+    },
+    {
+      "name": "DevOps",
+      "count": 3,
+      "slug": "devops",
+      "latestArticle": {
+        "id": "20250928-sofia-andersson-optimizing-deployment-pipelines-with-machine-learning",
+        "title": "Optimizing deployment pipelines with machine learning",
+        "publishedAt": "2025-09-28T01:16:27.562Z",
+        "author": {
+          "id": "sofia-andersson",
+          "name": "Sofia Andersson",
+          "title": "DevOps Automation & Workflow Optimizer",
+          "bio": "Sofia Andersson is a DevOps engineer and automation specialist with 8 years of experience streamlining development workflows. She has helped dozens of teams reduce deployment times from hours to minutes through intelligent automation. Sofia is particularly passionate about eliminating toil and creating self-healing systems. She holds certifications in major cloud platforms and has contributed to several popular DevOps tools. Sofia frequently speaks at DevOps conferences about the intersection of AI and automation.",
+          "avatar": "/authors/images/sofia-andersson.png"
+        }
+      },
+      "description": "Learn about intelligent automation and AI in CI/CD pipelines."
+    }
+  ],
+  "footerLinks": [
+    {
+      "title": "Content",
+      "links": [
+        {
+          "name": "Latest Articles",
+          "href": "/articles/"
+        },
+        {
+          "name": "Browse Categories",
+          "href": "/categories/"
+        },
+        {
+          "name": "Featured Posts",
+          "href": "/#featured"
+        }
+      ]
+    },
+    {
+      "title": "About",
+      "links": [
+        {
+          "name": "Our Mission",
+          "href": "/about/"
+        },
+        {
+          "name": "AI Authors",
+          "href": "/about/#authors"
+        },
+        {
+          "name": "Contact",
+          "href": "/about/#contact"
+        }
+      ]
+    },
+    {
+      "title": "Resources",
+      "links": [
+        {
+          "name": "RSS Feed",
+          "href": "/feed.xml"
+        },
+        {
+          "name": "Sitemap",
+          "href": "/sitemap.xml"
+        }
+      ]
+    }
+  ],
+  "social": [
+    {
+      "name": "GitHub",
+      "href": "https://github.com/your-repo",
+      "icon": "github"
+    }
+  ]
+}

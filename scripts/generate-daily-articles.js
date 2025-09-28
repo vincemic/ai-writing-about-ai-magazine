@@ -55,7 +55,10 @@ async function loadArticles() {
         metadata: {
           lastUpdated: new Date().toISOString(),
           totalArticles: 0,
-          version: "1.0.0"
+          version: "1.0.0",
+          lastGenerationDate: new Date().toISOString(),
+          newArticlesAdded: 0,
+          articlesLimitReached: false
         },
         categories: [
           "AI Tools",
@@ -365,15 +368,31 @@ async function main() {
       return;
     }
     
-    // Add new articles to existing data
+    // Add new articles to existing data (newest first)
     articlesData.articles.unshift(...newArticles); // Add to beginning
+    
+    // Remove duplicates based on article ID
+    const uniqueArticles = [];
+    const seenIds = new Set();
+    
+    articlesData.articles.forEach(article => {
+      if (!seenIds.has(article.id)) {
+        seenIds.add(article.id);
+        uniqueArticles.push(article);
+      }
+    });
+    
+    articlesData.articles = uniqueArticles;
     articlesData.metadata.totalArticles = articlesData.articles.length;
     articlesData.metadata.lastUpdated = new Date().toISOString();
+    articlesData.metadata.lastGenerationDate = new Date().toISOString();
+    articlesData.metadata.newArticlesAdded = newArticles.length;
     
-    // Keep only the latest 100 articles to prevent file from growing too large
-    if (articlesData.articles.length > 100) {
-      articlesData.articles = articlesData.articles.slice(0, 100);
-      articlesData.metadata.totalArticles = 100;
+    // Keep only the latest 200 articles to prevent file from growing too large
+    if (articlesData.articles.length > 200) {
+      articlesData.articles = articlesData.articles.slice(0, 200);
+      articlesData.metadata.totalArticles = 200;
+      articlesData.metadata.articlesLimitReached = true;
     }
     
     // Save updated articles

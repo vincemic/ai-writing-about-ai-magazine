@@ -1,16 +1,55 @@
-"use client";
-
-import { motion } from "framer-motion";
+import { Metadata } from "next";
 import Link from "next/link";
-import { Clock, User, Calendar, ArrowLeft, Share2, BookOpen } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
+import { getArticleById, getArticles } from "@/lib/data";
+import { notFound } from "next/navigation";
 
-// This would typically come from a CMS or API
-const articleData = {
-  "1": {
-    id: "1",
+interface ArticlePageProps {
+  params: Promise<{ id: string }>;
+}
+
+// Generate static params for all articles
+export async function generateStaticParams() {
+  const articlesData = getArticles();
+  return articlesData.articles.map((article) => ({ id: article.id }));
+}
+export default async function ArticlePage({ params }: ArticlePageProps) {
+  const { id } = await params;
+  const article = getArticleById(id);
+  
+  if (!article) {
+    notFound();
+  }
+  
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="max-w-4xl mx-auto">
+        <Link href="/articles/" className="text-blue-600 hover:underline mb-4 inline-block">
+          ← Back to Articles
+        </Link>
+        
+        <article className="prose prose-lg max-w-none">
+          <h1>{article.title}</h1>
+          <p className="lead">{article.excerpt}</p>
+          
+          <div className="flex items-center gap-4 text-sm text-gray-600 mb-8">
+            <span>By {article.author.name}</span>
+            <span>•</span>
+            <span>{new Date(article.publishedAt).toLocaleDateString()}</span>
+            <span>•</span>
+            <span>{article.readingTime} min read</span>
+          </div>
+          
+          <div dangerouslySetInnerHTML={{ __html: article.content }} />
+          
+          <div className="mt-8 p-4 bg-gray-50 rounded">
+            <h3>About {article.author.name}</h3>
+            <p>{article.author.bio}</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  );
+}
     title: "The Rise of AI-Powered Code Completion: Beyond GitHub Copilot",
     content: `
       <h2>Introduction</h2>

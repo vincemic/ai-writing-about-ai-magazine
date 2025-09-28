@@ -7,7 +7,11 @@
     "build": "next build --turbopack",
     "start": "next start",
     "lint": "eslint",
-    "generate-articles": "node scripts/generate-daily-articles.js"
+    "generate-articles": "node scripts/generate-daily-articles.js",
+    "generate-sitemap": "node scripts/generate-sitemap.js",
+    "update-navigation": "node scripts/update-navigation.js",
+    "build-static": "node scripts/build-static.js",
+    "deploy-prep": "npm run generate-articles && npm run build-static"
   },
   "dependencies": {
     "@radix-ui/react-separator": "^1.1.7",
