@@ -2,12 +2,12 @@
   "categories": [
     {
       "name": "AI Tools",
-      "count": 3,
+      "count": 2,
       "slug": "ai-tools",
       "latestArticle": {
-        "id": "20250928-maya-chen-ai-powered-code-completion-tools-comparison",
-        "title": "AI-powered code completion tools comparison",
-        "publishedAt": "2025-09-28T01:16:27.560Z",
+        "id": "20250928-maya-chen-adopting-mlops-for-streamlined",
+        "title": "Adopting MLOps for Streamlined AI Model Development and Deployment Pipelines",
+        "publishedAt": "2025-09-28T02:36:09.685Z",
         "author": {
           "id": "maya-chen",
           "name": "Dr. Maya Chen",
@@ -20,12 +20,12 @@
     },
     {
       "name": "Machine Learning",
-      "count": 3,
+      "count": 2,
       "slug": "machine-learning",
       "latestArticle": {
-        "id": "20250928-alex-rodriguez-mlops-best-practices-for-2025",
-        "title": "MLOps best practices for 2025",
-        "publishedAt": "2025-09-28T01:16:27.562Z",
+        "id": "20250928-alex-rodriguez-embrace-the-future-adopt-mlops",
+        "title": "Embrace the Future: Adopt MLOps for Streamlined AI Model Development and Deployment Pipelines",
+        "publishedAt": "2025-09-28T02:36:53.859Z",
         "author": {
           "id": "alex-rodriguez",
           "name": "Alex Rodriguez",
@@ -38,12 +38,12 @@
     },
     {
       "name": "Testing",
-      "count": 3,
+      "count": 2,
       "slug": "testing",
       "latestArticle": {
-        "id": "20250928-zara-okafor-automated-testing-with-ai-insights",
-        "title": "Automated testing with AI insights",
-        "publishedAt": "2025-09-28T01:16:27.562Z",
+        "id": "20250928-zara-okafor-using-gpt-3-for-automated-code",
+        "title": "Using GPT-3 for Automated Code Generation: Unleashing the Potential and Overcoming Challenges",
+        "publishedAt": "2025-09-28T02:37:32.298Z",
         "author": {
           "id": "zara-okafor",
           "name": "Zara Okafor",
@@ -56,12 +56,12 @@
     },
     {
       "name": "Future Tech",
-      "count": 3,
+      "count": 2,
       "slug": "future-tech",
       "latestArticle": {
-        "id": "20250928-kai-nakamura-the-future-of-human-ai-collaboration",
-        "title": "The future of human-AI collaboration",
-        "publishedAt": "2025-09-28T01:16:27.562Z",
+        "id": "20250928-kai-nakamura-unleashing-the-power-of-ai-eth",
+        "title": "Unleashing the Power of AI, Ethically: Federated Learning as a Tool for Privacy Preservation",
+        "publishedAt": "2025-09-28T02:38:18.141Z",
         "author": {
           "id": "kai-nakamura",
           "name": "Dr. Kai Nakamura",
@@ -74,12 +74,12 @@
     },
     {
       "name": "DevOps",
-      "count": 3,
+      "count": 2,
       "slug": "devops",
       "latestArticle": {
-        "id": "20250928-sofia-andersson-optimizing-deployment-pipelines-with-machine-learning",
-        "title": "Optimizing deployment pipelines with machine learning",
-        "publishedAt": "2025-09-28T01:16:27.562Z",
+        "id": "20250928-sofia-andersson-leveraging-federated-learning-",
+        "title": "Leveraging Federated Learning for Privacy-Preserving AI: A Practical Approach to Optimizing Your CI/CD Pipeline",
+        "publishedAt": "2025-09-28T02:38:59.332Z",
         "author": {
           "id": "sofia-andersson",
           "name": "Sofia Andersson",
@@ -95,54 +95,54 @@
     {
       "id": "maya-chen",
       "name": "Dr. Maya Chen",
-      "count": 3,
+      "count": 2,
       "latestArticle": {
-        "id": "20250928-maya-chen-ai-powered-code-completion-tools-comparison",
-        "title": "AI-powered code completion tools comparison",
-        "publishedAt": "2025-09-28T01:16:27.560Z"
+        "id": "20250928-maya-chen-adopting-mlops-for-streamlined",
+        "title": "Adopting MLOps for Streamlined AI Model Development and Deployment Pipelines",
+        "publishedAt": "2025-09-28T02:36:09.685Z"
       }
     },
     {
       "id": "alex-rodriguez",
       "name": "Alex Rodriguez",
-      "count": 3,
+      "count": 2,
       "latestArticle": {
-        "id": "20250928-alex-rodriguez-mlops-best-practices-for-2025",
-        "title": "MLOps best practices for 2025",
-        "publishedAt": "2025-09-28T01:16:27.562Z"
+        "id": "20250928-alex-rodriguez-embrace-the-future-adopt-mlops",
+        "title": "Embrace the Future: Adopt MLOps for Streamlined AI Model Development and Deployment Pipelines",
+        "publishedAt": "2025-09-28T02:36:53.859Z"
       }
     },
     {
       "id": "zara-okafor",
       "name": "Zara Okafor",
-      "count": 3,
+      "count": 2,
       "latestArticle": {
-        "id": "20250928-zara-okafor-automated-testing-with-ai-insights",
-        "title": "Automated testing with AI insights",
-        "publishedAt": "2025-09-28T01:16:27.562Z"
+        "id": "20250928-zara-okafor-using-gpt-3-for-automated-code",
+        "title": "Using GPT-3 for Automated Code Generation: Unleashing the Potential and Overcoming Challenges",
+        "publishedAt": "2025-09-28T02:37:32.298Z"
       }
     },
     {
       "id": "kai-nakamura",
       "name": "Dr. Kai Nakamura",
-      "count": 3,
+      "count": 2,
       "latestArticle": {
-        "id": "20250928-kai-nakamura-the-future-of-human-ai-collaboration",
-        "title": "The future of human-AI collaboration",
-        "publishedAt": "2025-09-28T01:16:27.562Z"
+        "id": "20250928-kai-nakamura-unleashing-the-power-of-ai-eth",
+        "title": "Unleashing the Power of AI, Ethically: Federated Learning as a Tool for Privacy Preservation",
+        "publishedAt": "2025-09-28T02:38:18.141Z"
       }
     },
     {
       "id": "sofia-andersson",
       "name": "Sofia Andersson",
-      "count": 3,
+      "count": 2,
       "latestArticle": {
-        "id": "20250928-sofia-andersson-optimizing-deployment-pipelines-with-machine-learning",
-        "title": "Optimizing deployment pipelines with machine learning",
-        "publishedAt": "2025-09-28T01:16:27.562Z"
+        "id": "20250928-sofia-andersson-leveraging-federated-learning-",
+        "title": "Leveraging Federated Learning for Privacy-Preserving AI: A Practical Approach to Optimizing Your CI/CD Pipeline",
+        "publishedAt": "2025-09-28T02:38:59.332Z"
       }
     }
   ],
-  "totalArticles": 15,
-  "lastUpdated": "2025-09-28T02:04:36.138Z"
+  "totalArticles": 10,
+  "lastUpdated": "2025-09-28T02:39:01.460Z"
 }
