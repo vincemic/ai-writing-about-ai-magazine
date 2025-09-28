@@ -16,7 +16,22 @@ const AUTHORS_DIR = path.join(__dirname, '../authors');
 const ARTICLES_FILE = path.join(DATA_DIR, 'articles.json');
 const AUTHORS_INDEX = path.join(AUTHORS_DIR, 'index.json');
 
-// OpenAI client will be initialized only in production mode
+// OpenAI client initialization
+let openai = null;
+if (process.env.TEST_MODE !== 'true') {
+  const { OpenAI } = require('openai');
+  
+  if (!process.env.OPENAI_API_KEY) {
+    console.error('❌ OPENAI_API_KEY environment variable is required for production mode');
+    console.log('💡 Set TEST_MODE=true to run in test mode with mock articles');
+    process.exit(1);
+  }
+  
+  openai = new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  });
+  console.log('✅ OpenAI client initialized');
+}
 
 /**
  * Load author profiles
