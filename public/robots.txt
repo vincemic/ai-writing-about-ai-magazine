@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://your-username.github.io/ai-ui-test-modern/sitemap.xml
+Sitemap: https://vincemic.github.io/ai-writing-about-ai-magazine/sitemap.xml
